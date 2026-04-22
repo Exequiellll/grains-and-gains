@@ -1,0 +1,13 @@
+# Claude Code skill definitions (licensed — keep private)
+**/SKILL.md
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
+.idea/
