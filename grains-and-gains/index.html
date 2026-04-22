@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Grains &amp; Gains — Home-style Filipino comfort on New Bypass Road, Santa Maria</title>
+  <meta name="description" content="Grains &amp; Gains is a small eatery in Santa Maria, Bulacan serving generous Filipino comfort food. One serving of rice feels like two. Dine-in and takeout, open daily until 9 PM." />
+  <meta name="theme-color" content="#F6EEDF" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Caveat:wght@500..700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream:   '#F6EEDF',
+            paper:   '#FBF6EB',
+            clay:    '#C2572A',
+            terra:   '#A63E1F',
+            moss:    '#2E3B27',
+            leaf:    '#3E5A34',
+            charcoal:'#1C1A17',
+            butter:  '#F3C969',
+            tomato:  '#E64A2B',
+          },
+          fontFamily: {
+            display: ['Fraunces','ui-serif','Georgia','serif'],
+            sans:    ['"Bricolage Grotesque"','ui-sans-serif','system-ui','sans-serif'],
+            hand:    ['Caveat','ui-serif','cursive'],
+          },
+          boxShadow: {
+            chunk: '0 18px 0 -6px rgba(28,26,23,.08), 0 30px 60px -20px rgba(28,26,23,.25)',
+            soft:  '0 10px 30px -12px rgba(28,26,23,.18)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root{
+      --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.11  0 0 0 0 0.10  0 0 0 0 0.09  0 0 0 0.22 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+    html{ scroll-behavior:smooth; }
+    body{
+      background:#F6EEDF;
+      color:#1C1A17;
+      font-family:'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+    body::before{
+      content:""; position:fixed; inset:0; pointer-events:none; z-index:60;
+      background-image:var(--grain); opacity:.35; mix-blend-mode:multiply;
+    }
+    .font-display{ font-family:'Fraunces', ui-serif, Georgia, serif; font-optical-sizing:auto; }
+    .font-hand{ font-family:'Caveat', cursive; }
+
+    /* hand-drawn wavy underline */
+    .wavy{
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10'><path d='M2 6 Q 17 -2 32 6 T 62 6 T 92 6 T 122 6' fill='none' stroke='%23E64A2B' stroke-width='3' stroke-linecap='round'/></svg>");
+      background-repeat:no-repeat; background-position:0 100%; background-size:100% .55em;
+      padding-bottom:.15em;
+    }
+
+    /* big organic blob */
+    .blob{
+      position:absolute; inset:auto; filter: blur(0px);
+      border-radius: 62% 38% 55% 45% / 50% 60% 40% 50%;
+      animation: morph 18s ease-in-out infinite alternate;
+    }
+    @keyframes morph{
+      0%  { border-radius: 62% 38% 55% 45% / 50% 60% 40% 50%; transform:translate3d(0,0,0) rotate(0) scale(1); }
+      50% { border-radius: 40% 60% 35% 65% / 60% 40% 55% 45%; transform:translate3d(10px,-14px,0) rotate(8deg) scale(1.03);}
+      100%{ border-radius: 55% 45% 60% 40% / 40% 55% 45% 60%; transform:translate3d(-8px,10px,0) rotate(-6deg) scale(.98);}
+    }
+
+    /* steam */
+    .steam{ position:absolute; bottom:18%; width:14px; height:60px; border-radius:999px;
+      background:linear-gradient(to top, rgba(255,255,255,.0), rgba(255,255,255,.7));
+      filter: blur(6px); opacity:.0; transform-origin:bottom center;
+      animation: rise 4.2s ease-in-out infinite;
+    }
+    .steam.s2{ animation-delay:.8s; left:52%; }
+    .steam.s3{ animation-delay:1.6s; left:60%; height:74px; }
+    @keyframes rise{
+      0%   { transform: translateY(10px) scale(.8,.8); opacity:0;   }
+      30%  { opacity:.7; }
+      100% { transform: translateY(-70px) scale(1.2,1.6); opacity:0;}
+    }
+
+    /* rice grain motif */
+    .grain-dot{ width:10px; height:16px; border-radius:50%; background:#F6EEDF; transform:rotate(18deg); box-shadow: 0 2px 0 rgba(0,0,0,.06) inset; }
+
+    /* scrolling marquee */
+    .marquee{ display:flex; gap:3rem; animation: slide 38s linear infinite; }
+    @keyframes slide{ from{ transform:translateX(0) } to{ transform:translateX(-50%) } }
+
+    /* card hover */
+    .dish:hover .dish-img{ transform: translateY(-6px) rotate(-1.5deg); }
+    .dish-img{ transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+
+    /* focus ring */
+    :focus-visible{ outline:3px solid #E64A2B; outline-offset:3px; border-radius:6px; }
+
+    @media (prefers-reduced-motion: reduce){
+      .blob, .steam, .marquee{ animation:none !important; }
+    }
+  </style>
+</head>
+<body class="selection:bg-tomato selection:text-cream">
+
+  <!-- =================== NAV =================== -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-cream/75 border-b border-charcoal/10">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 h-16 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-2 group">
+        <span class="w-9 h-9 rounded-[14px] bg-clay text-cream grid place-items-center font-display font-black text-xl rotate-[-6deg] group-hover:rotate-0 transition">G</span>
+        <span class="font-display text-xl tracking-tight"><span class="font-black">Grains</span> <span class="italic text-clay">&amp;</span> <span class="font-black">Gains</span></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm">
+        <a href="#menu" class="hover:text-clay">Menu</a>
+        <a href="#story" class="hover:text-clay">Our Story</a>
+        <a href="#reviews" class="hover:text-clay">Reviews</a>
+        <a href="#visit" class="hover:text-clay">Visit</a>
+      </nav>
+      <a href="#visit" class="hidden sm:inline-flex items-center gap-2 h-10 px-4 rounded-full bg-charcoal text-cream text-sm font-medium hover:bg-clay transition">
+        Order takeout
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- =================== HERO =================== -->
+  <section id="top" class="relative overflow-hidden">
+    <!-- blobs -->
+    <div aria-hidden="true" class="blob hidden md:block" style="position:absolute; top:-120px; right:-80px; width:520px; height:520px; background:radial-gradient(circle at 30% 30%, #F3C969, #C2572A 60%, #A63E1F); opacity:.9; z-index:0"></div>
+    <div aria-hidden="true" class="blob hidden md:block" style="position:absolute; bottom:-220px; left:-120px; width:420px; height:420px; background:radial-gradient(circle at 60% 40%, #3E5A34, #2E3B27); opacity:.85; z-index:0"></div>
+
+    <div class="relative z-10 max-w-[1320px] mx-auto px-5 lg:px-10 pt-10 lg:pt-16 pb-20 lg:pb-28 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      <!-- copy -->
+      <div class="lg:col-span-7">
+        <div class="inline-flex items-center gap-2 h-8 pl-2 pr-4 rounded-full bg-charcoal/90 text-cream text-[12px] tracking-wider uppercase">
+          <span class="w-2 h-2 rounded-full bg-butter animate-pulse"></span>
+          Open today · Closes 9 PM
+        </div>
+        <h1 class="font-display font-black leading-[.92] tracking-[-0.02em] mt-6 text-[clamp(2.8rem,7.4vw,6.4rem)]">
+          One serving
+          <span class="block italic font-light text-clay">feels like</span>
+          <span class="relative inline-block">
+            <span class="wavy">two.</span>
+          </span>
+        </h1>
+        <p class="font-hand text-clay text-3xl mt-3">— and the soup? still steaming.</p>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-charcoal/80">
+          A neighborhood carinderia on New Bypass Road where the rice is generous, the ulam is home-cooked, and the service moves fast. We cook the way your lola would — only louder, warmer, and with a longer line out front.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a href="#menu" class="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-clay text-cream font-medium hover:bg-terra transition shadow-chunk">
+            See today's plates
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#visit" class="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-cream text-charcoal border-2 border-charcoal font-medium hover:bg-charcoal hover:text-cream transition">
+            Get directions
+          </a>
+          <div class="flex items-center gap-2 pl-2">
+            <div class="flex -space-x-1">
+              <span aria-hidden="true" class="w-7 h-7 rounded-full bg-clay border-2 border-cream"></span>
+              <span aria-hidden="true" class="w-7 h-7 rounded-full bg-leaf border-2 border-cream"></span>
+              <span aria-hidden="true" class="w-7 h-7 rounded-full bg-butter border-2 border-cream"></span>
+            </div>
+            <div class="text-sm leading-tight">
+              <div class="font-semibold">4.8 ★★★★★</div>
+              <div class="text-charcoal/60 text-xs">Google · verified diners</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- quick facts -->
+        <dl class="mt-12 grid grid-cols-3 gap-6 max-w-xl">
+          <div>
+            <dt class="text-xs uppercase tracking-widest text-charcoal/50">Dine-in</dt>
+            <dd class="font-display text-2xl font-black mt-1">Yes</dd>
+          </div>
+          <div>
+            <dt class="text-xs uppercase tracking-widest text-charcoal/50">Takeout</dt>
+            <dd class="font-display text-2xl font-black mt-1">Yes</dd>
+          </div>
+          <div>
+            <dt class="text-xs uppercase tracking-widest text-charcoal/50">Location</dt>
+            <dd class="font-display text-2xl font-black mt-1">Sta. Maria</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- hero visual -->
+      <div class="lg:col-span-5 relative">
+        <!-- frame -->
+        <div class="relative aspect-[4/5] rounded-[40px] bg-leaf overflow-hidden shadow-chunk">
+          <!-- plated dish: CSS composed "bowl" (robust fallback w/o external image) -->
+          <div class="absolute inset-0 grid place-items-center">
+            <!-- steam -->
+            <span class="steam" style="left:44%"></span>
+            <span class="steam s2"></span>
+            <span class="steam s3"></span>
+
+            <!-- bowl -->
+            <div class="relative w-[78%] aspect-square rounded-full"
+                 style="background:radial-gradient(circle at 50% 40%, #F6EEDF 0 38%, #E6D7B5 38% 46%, #C2572A 46% 54%, #8B2F16 54% 100%); box-shadow: inset 0 -30px 60px rgba(0,0,0,.35), 0 30px 60px -20px rgba(0,0,0,.45);">
+              <!-- rice mound + grains -->
+              <div class="absolute left-1/2 top-[36%] -translate-x-1/2 w-[58%] h-[46%] rounded-[50%]"
+                   style="background:radial-gradient(ellipse at 50% 30%, #FFFDF5, #F0E4C7 80%); box-shadow: inset 0 -10px 20px rgba(0,0,0,.08);">
+                <span class="grain-dot absolute" style="top:18%; left:28%"></span>
+                <span class="grain-dot absolute" style="top:10%; left:48%; transform:rotate(-12deg)"></span>
+                <span class="grain-dot absolute" style="top:28%; left:62%; transform:rotate(26deg)"></span>
+                <span class="grain-dot absolute" style="top:46%; left:36%; transform:rotate(4deg)"></span>
+                <span class="grain-dot absolute" style="top:50%; left:56%; transform:rotate(-22deg)"></span>
+              </div>
+              <!-- egg -->
+              <div class="absolute w-[22%] aspect-square rounded-full" style="top:18%; left:52%; background:radial-gradient(circle at 35% 35%, #FFFFFF 0 55%, #F5EEDD 55%); box-shadow: 0 6px 14px rgba(0,0,0,.2)">
+                <div class="absolute w-[45%] aspect-square rounded-full top-[28%] left-[28%]" style="background:radial-gradient(circle at 35% 35%, #FFD76B, #E89A1C); box-shadow: 0 4px 10px rgba(0,0,0,.25)"></div>
+              </div>
+              <!-- herb -->
+              <div class="absolute w-[10%] h-[3%] rounded-full bg-leaf" style="top:44%; left:28%; transform:rotate(-18deg)"></div>
+              <div class="absolute w-[8%] h-[2.5%] rounded-full bg-leaf" style="top:52%; left:48%; transform:rotate(12deg)"></div>
+            </div>
+          </div>
+
+          <!-- label badge -->
+          <div class="absolute top-5 left-5 bg-cream text-charcoal px-4 py-2 rounded-full font-semibold text-sm shadow-soft">
+            Today's special · Tapsilog
+          </div>
+        </div>
+
+        <!-- sticker -->
+        <div class="absolute -bottom-8 -left-6 md:-left-10 rotate-[-8deg] bg-butter text-charcoal rounded-full h-28 w-28 grid place-items-center shadow-chunk">
+          <div class="text-center leading-tight">
+            <div class="font-display font-black text-3xl">₱</div>
+            <div class="text-[11px] font-bold uppercase tracking-wider">budget<br/>friendly</div>
+          </div>
+        </div>
+        <!-- sticker 2 -->
+        <div class="absolute -top-6 -right-2 md:-right-6 rotate-[10deg] bg-clay text-cream rounded-[22px] px-4 py-3 shadow-chunk">
+          <div class="font-hand text-2xl leading-none">“worth the order.”</div>
+          <div class="text-[11px] uppercase tracking-widest mt-1 opacity-80">— Denber T. on Google</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- marquee -->
+    <div class="relative z-10 border-y border-charcoal/15 bg-charcoal text-cream py-5 overflow-hidden">
+      <div class="marquee whitespace-nowrap font-display italic text-2xl md:text-3xl">
+        <div class="flex items-center gap-12 pr-12">
+          <span>Silog all day</span><span>·</span><span>Sinigang na baboy</span><span>·</span><span>Pancit canton</span><span>·</span><span>Adobong manok</span><span>·</span><span>Ginataang gulay</span><span>·</span><span>Extra rice? of course</span><span>·</span>
+        </div>
+        <div class="flex items-center gap-12 pr-12" aria-hidden="true">
+          <span>Silog all day</span><span>·</span><span>Sinigang na baboy</span><span>·</span><span>Pancit canton</span><span>·</span><span>Adobong manok</span><span>·</span><span>Ginataang gulay</span><span>·</span><span>Extra rice? of course</span><span>·</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== STORY =================== -->
+  <section id="story" class="relative py-24 lg:py-32">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 grid lg:grid-cols-12 gap-12 lg:gap-16">
+      <div class="lg:col-span-5">
+        <span class="text-xs uppercase tracking-[0.25em] text-clay font-bold">Our story</span>
+        <h2 class="font-display font-black leading-[.95] tracking-[-.02em] text-5xl md:text-6xl mt-4">
+          Cooked for the <span class="italic font-light">long day</span> you just had.
+        </h2>
+      </div>
+      <div class="lg:col-span-7 space-y-6 text-lg leading-relaxed text-charcoal/85">
+        <p>Grains &amp; Gains started as a small kitchen off the New Bypass — a place for jeepney drivers, nurses on break, students between exams, and tired parents picking up dinner on the way home. Our rule from day one was simple: nobody leaves hungry, and nobody leaves broke.</p>
+        <p>Everything is cooked in small batches throughout the day. The sinigang broth is built from scratch. The tapa is marinated overnight. The rice is fluffed the second it finishes steaming. If we run out of something, we close the pot — we don't reheat yesterday onto today's plate.</p>
+        <p class="font-hand text-clay text-3xl leading-snug">Sarap na. Hindi mahal. Puno ang tiyan.</p>
+      </div>
+    </div>
+
+    <!-- value strip -->
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <article class="rounded-3xl bg-paper p-6 border border-charcoal/10 shadow-soft">
+        <div class="w-10 h-10 rounded-2xl bg-clay text-cream grid place-items-center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 5 5.6.6-4 4 1 5.4L12 14.8 6 17l1-5.4-4-4 5.6-.6z"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-2xl mt-4">Generous by default</h3>
+        <p class="text-charcoal/70 text-sm mt-1">Our single rice is what others call a double. No upsell needed.</p>
+      </article>
+      <article class="rounded-3xl bg-paper p-6 border border-charcoal/10 shadow-soft">
+        <div class="w-10 h-10 rounded-2xl bg-leaf text-cream grid place-items-center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M5 9c0-3 3-5 7-5s7 2 7 5M5 15c0 3 3 5 7 5s7-2 7-5"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-2xl mt-4">Cooked in small batches</h3>
+        <p class="text-charcoal/70 text-sm mt-1">Never yesterday's food on today's plate. Run out, close the pot.</p>
+      </article>
+      <article class="rounded-3xl bg-paper p-6 border border-charcoal/10 shadow-soft">
+        <div class="w-10 h-10 rounded-2xl bg-tomato text-cream grid place-items-center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-2xl mt-4">Fast, friendly service</h3>
+        <p class="text-charcoal/70 text-sm mt-1">Order, sit, eat. Most tables are served in under five minutes.</p>
+      </article>
+      <article class="rounded-3xl bg-paper p-6 border border-charcoal/10 shadow-soft">
+        <div class="w-10 h-10 rounded-2xl bg-butter text-charcoal grid place-items-center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v6a8 8 0 01-16 0V4zM6 20h12"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-2xl mt-4">Soup always steaming</h3>
+        <p class="text-charcoal/70 text-sm mt-1">Sinigang, bulalo, tinola — ladled from pots kept hot all day.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- =================== MENU =================== -->
+  <section id="menu" class="relative py-24 lg:py-32 bg-moss text-cream">
+    <!-- grain dots decor -->
+    <div aria-hidden="true" class="absolute top-16 right-10 opacity-50">
+      <div class="grid grid-cols-5 gap-2">
+        <span class="grain-dot"></span><span class="grain-dot"></span><span class="grain-dot"></span><span class="grain-dot"></span><span class="grain-dot"></span>
+        <span class="grain-dot"></span><span class="grain-dot"></span><span class="grain-dot"></span><span class="grain-dot"></span><span class="grain-dot"></span>
+      </div>
+    </div>
+
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <span class="text-xs uppercase tracking-[0.25em] text-butter font-bold">The menu</span>
+          <h2 class="font-display font-black leading-[.95] tracking-[-.02em] text-5xl md:text-6xl mt-4">
+            Plates that <span class="italic font-light">ground</span> the day.
+          </h2>
+        </div>
+        <p class="max-w-md text-cream/80">A rotating lineup of Filipino comfort classics. Ask the counter for what's simmering today — the blackboard changes with the season.</p>
+      </div>
+
+      <!-- dish grid -->
+      <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <!-- dish 1 -->
+        <article class="dish group relative rounded-[32px] bg-paper text-charcoal p-6 shadow-chunk">
+          <div class="flex items-center justify-between text-xs uppercase tracking-widest text-charcoal/55">
+            <span>Silog</span><span>Whole day</span>
+          </div>
+          <div class="aspect-square mt-4 rounded-3xl bg-gradient-to-br from-butter via-clay to-terra grid place-items-center overflow-hidden relative">
+            <!-- composed dish -->
+            <div class="dish-img absolute inset-6 rounded-full" style="background:radial-gradient(circle at 50% 40%, #F6EEDF 0 32%, #C2572A 32% 40%, #8B2F16 40% 100%); box-shadow: inset 0 -20px 40px rgba(0,0,0,.35)">
+              <div class="absolute left-1/2 top-[34%] -translate-x-1/2 w-[56%] h-[42%] rounded-[50%]" style="background:radial-gradient(ellipse at 50% 30%, #FFFDF5, #F0E4C7 80%)"></div>
+              <div class="absolute w-[30%] aspect-square rounded-full" style="top:22%; left:50%; background:radial-gradient(circle at 35% 35%, #FFFFFF 0 55%, #F5EEDD 55%)">
+                <div class="absolute w-[45%] aspect-square rounded-full top-[28%] left-[28%]" style="background:radial-gradient(circle at 35% 35%, #FFD76B, #E89A1C)"></div>
+              </div>
+            </div>
+          </div>
+          <h3 class="font-display font-black text-2xl mt-5">Tapsilog</h3>
+          <p class="text-sm text-charcoal/70 mt-1">Overnight-marinated beef tapa, garlic rice, sunny egg, house atchara.</p>
+          <div class="mt-4 flex items-end justify-between">
+            <span class="font-display text-2xl font-black">₱ 120</span>
+            <span class="text-xs uppercase tracking-widest text-clay font-bold">Bestseller</span>
+          </div>
+        </article>
+
+        <!-- dish 2 -->
+        <article class="dish group relative rounded-[32px] bg-paper text-charcoal p-6 shadow-chunk">
+          <div class="flex items-center justify-between text-xs uppercase tracking-widest text-charcoal/55">
+            <span>Sabaw</span><span>Ladled hot</span>
+          </div>
+          <div class="aspect-square mt-4 rounded-3xl bg-gradient-to-br from-tomato via-clay to-moss grid place-items-center overflow-hidden relative">
+            <div class="dish-img absolute inset-6 rounded-full" style="background:radial-gradient(circle at 50% 40%, #E64A2B 0 42%, #A63E1F 42% 50%, #5A1E0B 50% 100%); box-shadow: inset 0 -20px 40px rgba(0,0,0,.35)">
+              <!-- floaters -->
+              <span class="absolute w-[14%] aspect-square rounded-full bg-leaf" style="top:30%; left:30%"></span>
+              <span class="absolute w-[10%] aspect-square rounded-full bg-butter" style="top:50%; left:55%"></span>
+              <span class="absolute w-[18%] h-[6%] rounded-full bg-paper" style="top:46%; left:38%; transform:rotate(-14deg); opacity:.85"></span>
+            </div>
+            <span aria-hidden="true" class="steam" style="left:44%"></span>
+            <span aria-hidden="true" class="steam s2"></span>
+          </div>
+          <h3 class="font-display font-black text-2xl mt-5">Sinigang na Baboy</h3>
+          <p class="text-sm text-charcoal/70 mt-1">Pork belly and vegetables simmered in a tart tamarind broth. From-scratch.</p>
+          <div class="mt-4 flex items-end justify-between">
+            <span class="font-display text-2xl font-black">₱ 150</span>
+            <span class="text-xs uppercase tracking-widest text-leaf font-bold">House favorite</span>
+          </div>
+        </article>
+
+        <!-- dish 3 -->
+        <article class="dish group relative rounded-[32px] bg-paper text-charcoal p-6 shadow-chunk">
+          <div class="flex items-center justify-between text-xs uppercase tracking-widest text-charcoal/55">
+            <span>Ulam</span><span>With rice</span>
+          </div>
+          <div class="aspect-square mt-4 rounded-3xl bg-gradient-to-br from-moss via-leaf to-charcoal grid place-items-center overflow-hidden relative">
+            <div class="dish-img absolute inset-6 rounded-full" style="background:radial-gradient(circle at 50% 40%, #2B1810 0 45%, #1C1A17 45% 100%); box-shadow: inset 0 -20px 40px rgba(0,0,0,.35)">
+              <span class="absolute w-[20%] aspect-square rounded-[30%]" style="top:32%; left:28%; background:linear-gradient(135deg,#8B4A1E,#3E1F0A)"></span>
+              <span class="absolute w-[18%] aspect-square rounded-[30%]" style="top:44%; left:54%; background:linear-gradient(135deg,#A85A2A,#4E2A12)"></span>
+              <span class="absolute w-[10%] aspect-square rounded-full bg-butter" style="top:30%; left:56%"></span>
+            </div>
+          </div>
+          <h3 class="font-display font-black text-2xl mt-5">Adobong Manok</h3>
+          <p class="text-sm text-charcoal/70 mt-1">Chicken slow-braised in soy, vinegar, peppercorn, and bay leaf. Deep and glossy.</p>
+          <div class="mt-4 flex items-end justify-between">
+            <span class="font-display text-2xl font-black">₱ 110</span>
+            <span class="text-xs uppercase tracking-widest text-clay font-bold">Comfort</span>
+          </div>
+        </article>
+
+        <!-- dish 4 -->
+        <article class="dish group relative rounded-[32px] bg-paper text-charcoal p-6 shadow-chunk">
+          <div class="flex items-center justify-between text-xs uppercase tracking-widest text-charcoal/55">
+            <span>Pansit</span><span>Merienda</span>
+          </div>
+          <div class="aspect-square mt-4 rounded-3xl bg-gradient-to-br from-butter via-clay to-terra grid place-items-center overflow-hidden relative">
+            <div class="dish-img absolute inset-6 rounded-full" style="background:radial-gradient(circle at 50% 40%, #F3C969 0 42%, #C2572A 42% 52%, #8B2F16 52% 100%); box-shadow: inset 0 -20px 40px rgba(0,0,0,.35)">
+              <!-- noodles -->
+              <svg viewBox="0 0 100 100" class="absolute inset-[18%]" aria-hidden="true">
+                <g stroke="#F6EEDF" stroke-width="2" fill="none" stroke-linecap="round">
+                  <path d="M5,30 C25,10 45,50 65,30 S95,50 95,30"/>
+                  <path d="M5,45 C25,25 45,65 65,45 S95,65 95,45"/>
+                  <path d="M5,60 C25,40 45,80 65,60 S95,80 95,60"/>
+                  <path d="M5,75 C25,55 45,95 65,75 S95,95 95,75"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <h3 class="font-display font-black text-2xl mt-5">Pancit Canton</h3>
+          <p class="text-sm text-charcoal/70 mt-1">Wheat noodles tossed with carrots, cabbage, kikiam, and a squeeze of calamansi.</p>
+          <div class="mt-4 flex items-end justify-between">
+            <span class="font-display text-2xl font-black">₱ 80</span>
+            <span class="text-xs uppercase tracking-widest text-tomato font-bold">Merienda</span>
+          </div>
+        </article>
+
+        <!-- dish 5 -->
+        <article class="dish group relative rounded-[32px] bg-paper text-charcoal p-6 shadow-chunk">
+          <div class="flex items-center justify-between text-xs uppercase tracking-widest text-charcoal/55">
+            <span>Gulay</span><span>With rice</span>
+          </div>
+          <div class="aspect-square mt-4 rounded-3xl bg-gradient-to-br from-leaf via-moss to-charcoal grid place-items-center overflow-hidden relative">
+            <div class="dish-img absolute inset-6 rounded-full" style="background:radial-gradient(circle at 50% 40%, #FBF6EB 0 35%, #3E5A34 35% 48%, #2E3B27 48% 100%); box-shadow: inset 0 -20px 40px rgba(0,0,0,.35)">
+              <span class="absolute w-[22%] aspect-square rounded-[40%]" style="top:30%; left:30%; background:#3E5A34"></span>
+              <span class="absolute w-[18%] aspect-square rounded-[40%]" style="top:42%; left:54%; background:#2E3B27"></span>
+              <span class="absolute w-[12%] aspect-square rounded-full bg-butter" style="top:52%; left:40%"></span>
+            </div>
+          </div>
+          <h3 class="font-display font-black text-2xl mt-5">Ginataang Gulay</h3>
+          <p class="text-sm text-charcoal/70 mt-1">Squash, long beans, and leafy greens stewed in coconut milk with shrimp paste.</p>
+          <div class="mt-4 flex items-end justify-between">
+            <span class="font-display text-2xl font-black">₱ 90</span>
+            <span class="text-xs uppercase tracking-widest text-leaf font-bold">Veg-first</span>
+          </div>
+        </article>
+
+        <!-- CTA card -->
+        <article class="relative rounded-[32px] bg-clay text-cream p-6 shadow-chunk overflow-hidden flex flex-col justify-between">
+          <div>
+            <span class="text-xs uppercase tracking-widest text-cream/70 font-bold">And 20+ more</span>
+            <h3 class="font-display font-black text-4xl leading-[.95] mt-3">Blackboard changes with the pot.</h3>
+            <p class="text-cream/85 mt-3 text-sm">Bulalo on cold mornings. Pakbet when the bagoong hits right. Come by and see what's on.</p>
+          </div>
+          <a href="#visit" class="mt-8 inline-flex items-center gap-2 h-11 px-5 rounded-full bg-cream text-clay font-semibold w-fit hover:bg-butter transition">
+            Swing by today
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <!-- deco blob -->
+          <div aria-hidden="true" class="blob" style="position:absolute; bottom:-40px; right:-40px; width:180px; height:180px; background:#A63E1F; opacity:.8"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== REVIEWS =================== -->
+  <section id="reviews" class="relative py-24 lg:py-32">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <span class="text-xs uppercase tracking-[0.25em] text-clay font-bold">Reviews</span>
+          <h2 class="font-display font-black leading-[.95] tracking-[-.02em] text-5xl md:text-6xl mt-4">
+            4.8 <span class="font-hand text-clay text-4xl align-middle">on Google</span>
+          </h2>
+        </div>
+        <div class="text-right">
+          <div class="text-5xl font-display font-black">★★★★★</div>
+          <p class="text-charcoal/60 text-sm mt-1">From real diners in Santa Maria</p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mt-14">
+        <!-- review 1 -->
+        <figure class="rounded-3xl bg-paper border border-charcoal/10 p-7 shadow-soft flex flex-col">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-clay text-cream grid place-items-center font-display font-black">D</div>
+            <div>
+              <div class="font-semibold">Denber Tokyo</div>
+              <div class="text-xs text-charcoal/60">4 reviews · 8 photos</div>
+            </div>
+          </div>
+          <div class="text-butter mt-4" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="font-display text-2xl leading-tight mt-3">
+            “It's worth the order — <span class="text-clay">their 1 serving of rice is like 2 rice.</span> The soup is delicious and the service is fast.”
+          </blockquote>
+          <figcaption class="text-xs text-charcoal/55 mt-4">9 months ago · Translated from Filipino</figcaption>
+        </figure>
+        <!-- review 2 -->
+        <figure class="rounded-3xl bg-charcoal text-cream p-7 shadow-soft flex flex-col">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-butter text-charcoal grid place-items-center font-display font-black">L</div>
+            <div>
+              <div class="font-semibold">Laurence Christopher M. Cruz</div>
+              <div class="text-xs text-cream/60">1 review · 5 photos</div>
+            </div>
+          </div>
+          <div class="text-butter mt-4" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="font-display text-2xl leading-tight mt-3">
+            “Food: 5. <span class="text-butter">Service: 5.</span>”
+          </blockquote>
+          <figcaption class="text-xs text-cream/55 mt-4">7 months ago</figcaption>
+        </figure>
+        <!-- review 3 -->
+        <figure class="rounded-3xl bg-paper border border-charcoal/10 p-7 shadow-soft flex flex-col">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-leaf text-cream grid place-items-center font-display font-black">H</div>
+            <div>
+              <div class="font-semibold">Hans Jamiel M. Cayao</div>
+              <div class="text-xs text-charcoal/60">Local diner</div>
+            </div>
+          </div>
+          <div class="text-butter mt-4" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="font-display text-2xl leading-tight mt-3">
+            “Food: 5. <span class="text-clay">Service: 5.</span>”
+          </blockquote>
+          <figcaption class="text-xs text-charcoal/55 mt-4">2 months ago</figcaption>
+        </figure>
+      </div>
+
+      <p class="text-center mt-10 text-sm text-charcoal/60">
+        Reviews pulled from Google Business. <a href="#visit" class="underline hover:text-clay">Leave your own →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- =================== VISIT =================== -->
+  <section id="visit" class="relative py-24 lg:py-32 bg-clay text-cream overflow-hidden">
+    <div aria-hidden="true" class="blob" style="position:absolute; top:-140px; left:-120px; width:420px; height:420px; background:#A63E1F; opacity:.8"></div>
+    <div aria-hidden="true" class="blob" style="position:absolute; bottom:-160px; right:-140px; width:520px; height:520px; background:#2E3B27; opacity:.75"></div>
+
+    <div class="relative z-10 max-w-[1320px] mx-auto px-5 lg:px-10 grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-5">
+        <span class="text-xs uppercase tracking-[0.25em] text-butter font-bold">Visit us</span>
+        <h2 class="font-display font-black leading-[.95] tracking-[-.02em] text-5xl md:text-6xl mt-4">
+          Find the <span class="italic font-light">long line</span>. That's us.
+        </h2>
+        <p class="mt-6 text-cream/90 text-lg leading-relaxed max-w-md">
+          We're on New Bypass Road Extension in Santa Maria, Bulacan — look for the orange signage and the smell of garlic rice.
+        </p>
+
+        <dl class="mt-10 space-y-6">
+          <div class="flex gap-4">
+            <div class="w-10 h-10 rounded-2xl bg-cream/15 grid place-items-center shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-7.58-8-13a8 8 0 1116 0c0 5.42-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></svg>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-widest text-cream/70">Address</dt>
+              <dd class="font-display text-xl font-bold mt-1">New Bypass Road Extension,<br/>Santa Maria, 3022 Bulacan</dd>
+              <dd class="text-xs text-cream/70 mt-1">Plus code: RX67+RC Santa Maria</dd>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-10 h-10 rounded-2xl bg-cream/15 grid place-items-center shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-widest text-cream/70">Hours</dt>
+              <dd class="font-display text-xl font-bold mt-1">Daily · Opens early, closes 9 PM</dd>
+              <dd class="text-xs text-cream/70 mt-1">Breakfast silog from 6 AM. Kitchen last call 8:45 PM.</dd>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-10 h-10 rounded-2xl bg-cream/15 grid place-items-center shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18v14H3zM3 7l9 6 9-6"/></svg>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-widest text-cream/70">Order ahead</dt>
+              <dd class="font-display text-xl font-bold mt-1">Message us on Facebook</dd>
+              <dd class="text-xs text-cream/70 mt-1"><a class="underline hover:text-butter" href="https://facebook.com" target="_blank" rel="noopener">facebook.com/grainsandgains</a></dd>
+            </div>
+          </div>
+        </dl>
+
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="https://www.google.com/maps/search/?api=1&query=Grains+and+Gains+Santa+Maria+Bulacan" target="_blank" rel="noopener"
+             class="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-cream text-clay font-semibold hover:bg-butter hover:text-charcoal transition shadow-chunk">
+            Get directions
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener"
+             class="inline-flex items-center gap-2 h-12 px-6 rounded-full border-2 border-cream text-cream font-semibold hover:bg-cream hover:text-clay transition">
+            Message for takeout
+          </a>
+        </div>
+      </div>
+
+      <!-- map -->
+      <div class="lg:col-span-7">
+        <div class="relative rounded-[40px] overflow-hidden border-4 border-cream/20 shadow-chunk aspect-[4/3] bg-paper">
+          <iframe
+            title="Grains &amp; Gains location map"
+            src="https://www.google.com/maps?q=Grains+and+Gains+Santa+Maria+Bulacan&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="absolute inset-0 w-full h-full border-0"></iframe>
+        </div>
+        <p class="mt-4 text-cream/80 text-sm text-center">Parking available along the bypass shoulder. Tricycle drop-off at the front gate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== FOOTER =================== -->
+  <footer class="bg-charcoal text-cream/90 pt-16 pb-10">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10">
+      <div class="grid md:grid-cols-12 gap-10">
+        <div class="md:col-span-5">
+          <div class="flex items-center gap-2">
+            <span class="w-9 h-9 rounded-[14px] bg-clay text-cream grid place-items-center font-display font-black text-xl rotate-[-6deg]">G</span>
+            <span class="font-display text-2xl tracking-tight"><span class="font-black">Grains</span> <span class="italic text-butter">&amp;</span> <span class="font-black">Gains</span></span>
+          </div>
+          <p class="mt-4 max-w-sm text-cream/70">Home-style Filipino comfort on New Bypass Road, Santa Maria. Big rice, small prices, full tables.</p>
+          <p class="font-hand text-butter text-3xl mt-6 leading-none">Puno ang tiyan. Sulit ang piso.</p>
+        </div>
+        <div class="md:col-span-3">
+          <h4 class="text-xs uppercase tracking-widest text-cream/50 font-bold">Explore</h4>
+          <ul class="mt-4 space-y-2">
+            <li><a href="#menu" class="hover:text-butter">Menu</a></li>
+            <li><a href="#story" class="hover:text-butter">Our story</a></li>
+            <li><a href="#reviews" class="hover:text-butter">Reviews</a></li>
+            <li><a href="#visit" class="hover:text-butter">Visit</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-4">
+          <h4 class="text-xs uppercase tracking-widest text-cream/50 font-bold">Find us</h4>
+          <address class="not-italic mt-4 text-cream/80 leading-relaxed">
+            New Bypass Road Extension<br/>
+            Santa Maria, 3022 Bulacan<br/>
+            Plus code: RX67+RC
+          </address>
+          <div class="flex items-center gap-3 mt-5">
+            <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" class="w-10 h-10 rounded-full bg-cream/10 hover:bg-clay grid place-items-center transition">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.1.5-2 2-2h2V2h-3c-3 0-5 1.8-5 5v3H6v4h3v8z"/></svg>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Grains+and+Gains+Santa+Maria+Bulacan" target="_blank" rel="noopener" aria-label="Google Maps" class="w-10 h-10 rounded-full bg-cream/10 hover:bg-clay grid place-items-center transition">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-7.58-8-13a8 8 0 1116 0c0 5.42-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-14 pt-6 border-t border-cream/10 flex flex-wrap items-center justify-between gap-4 text-xs text-cream/50">
+        <span>© <span id="yr"></span> Grains &amp; Gains. Cooked fresh, every day.</span>
+        <span>Built with love in Santa Maria, Bulacan.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
